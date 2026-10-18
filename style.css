@@ -6,13 +6,23 @@
 	list-style: none;
 	text-decoration:none;
 }
-body{
-	font-family: Calibri, Helveica, sans-serif;
-	font-size: 14px;
+
+/* Прижимаем футер к низу экрана на всех страницах */
+html, body {
+	height: 100%;
 }
 
+body{
+	font-family: Calibri, Helvetica, sans-serif;
+	font-size: 14px;
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+}
+
+/* ВЕРХНЕЕ МЕНЮ */
 section{
-	position:fixed;
+	position: fixed;
 	top:0;
 	left:0;
 	right:0;
@@ -21,7 +31,8 @@ section{
 	justify-content:space-between;
 	align-items:center;
 	padding: 0 8%;
-	box-shadow: 0 5px 10px #000;
+	box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+	z-index: 9999 !important; /* Навигация всегда поверх контента */
 }
 
 section .logo{
@@ -32,19 +43,21 @@ section .logo{
 }
 
 section .logo:hover{
-transform: scale(1.2);
+	transform: scale(1.2);
 }
 
 section nav ul li{
-position:relative;
-float:left; 
+	position:relative;
+	float:left; 
 }
+
 section nav ul li a{
 	padding:15px;
 	color:#000;
 	font-size:16px;
 	display:block;
 }
+
 section nav ul li a:hover{
 	background:#000;
 	color:#fff;
@@ -72,561 +85,649 @@ nav ul li:hover > ul{
 	display:initial;
 }
 
-
 a{
-text-decoration: none;	
+	text-decoration: none;	
 }
 
-div.hero{
-	width: 896px;
-	height:1316px;
-	background-image: url(portrait.jpg);
+/* БЛОК HERO (ГЛАВНЫЙ БАННЕР) — СИНИЙ ГРАДИЕНТ + ФОТО СПРАВА */
+div.hero {
+	width: 100%; 
+	max-width: 100%; 
+	height: 100vh; /* Занимает ровно один экран по высоте */
+	min-height: 550px; 
+	
+	/* 1. Задаем синий градиент на весь фон, как на макете */
+	background-color: #5b9bfb;
+	background-image: linear-gradient(135deg, #7cb1ff 0%, #3a82f6 100%);
+	
+	/* 2. Поверх градиента накладываем вашу фотографию в арке */
+	background-image: url(portrait.jpg), linear-gradient(135deg, #7cb1ff 0%, #3a82f6 100%);
 	background-repeat: no-repeat;  
-    background-position: center;   
-    background-size: cover;        
+	
+	/* 3. Размещаем фото в правой части с красивым отступом от краев */
+	background-position: right 10% bottom 0px; 
+	
+	/* 4. Настраиваем размер: фото подстроится под высоту экрана, а градиент заполнит всё остальное */
+	background-size: contain, cover;        
+	
 	margin: 0 auto;  
-	padding:100px;
+	padding: 0 8%; 
+	display: flex;
+	flex-direction: column;
+	justify-content: center; 
+	align-items: flex-start; 
+	position: relative;
 }
+
+
 .title {
-  color: #ffffff;
-  font-size: 80px;
-  font-weight: 900;
-  font-style: italic; /* Делаем шрифт наклонным, как в PDF */
-  line-height: 1.1;
-  letter-spacing: -0.5px;
-  margin-bottom: 12px;
- 
+	color: #ffffff;
+	font-size: 80px;
+	font-weight: 900;
+	font-style: italic;
+	line-height: 1.1;
+	letter-spacing: -0.5px;
+	margin-bottom: 12px;
 }
 
 .sub {
-  color: rgba(255, 255, 255, 0.85); /* Белый цвет с легкой прозрачностью */
-  font-size: 26px;
-  font-weight: 500;
+	color: rgba(255, 255, 255, 0.85);
+	font-size: 26px;
+	font-weight: 500;
 }
+
+/* СТАРЫЙ БЛОК НАВЫКОВ */
 .skills-card {
-  width: 100%;
-  background-color: #eef1f6; 
-  padding: 40px 20px;
-  box-sizing: border-box;
-  margin-top: 30px;
+	width: 100%;
+	background-color: #eef1f6; 
+	padding: 40px 20px;
+	box-sizing: border-box;
+	margin-top: 30px;
 }
 
-/* Ограничиваем ширину контента, чтобы текст не улетал далеко от звёзд */
 .skills-inner-content {
-  max-width: 450px; /* Идеальное расстояние между текстом и звёздами */
-  margin: 0 auto;   /* Центрирует список по центру экрана */
+	max-width: 450px;
+	margin: 0 auto;
 }
 
-/* Увеличенный заголовок SKILLS */
 .skills-main-title {
-  font-family: 'Arial', sans-serif;
-  font-size: 32px;
-  font-weight: bold;
-  letter-spacing: 1px;
-  color: #111111;
-  margin-bottom: 30px;
- 
+	font-family: 'Arial', sans-serif;
+	font-size: 32px;
+	font-weight: bold;
+	letter-spacing: 1px;
+	color: #111111;
+	margin-bottom: 30px;
 }
 
-/* Строка с одним навыком */
 .skill-item-row {
-  display: flex;
-  justify-content: space-between; 
-  align-items: center;
-  margin-bottom: 25px;
+	display: flex;
+	justify-content: space-between; 
+	align-items: center;
+	margin-bottom: 25px;
 }
 
-/* Название навыка */
 .skill-item-name {
-  font-family: 'Arial', sans-serif;
-  font-size: 20px;
-  font-weight: 600;
-  color: #333333;
+	font-family: 'Arial', sans-serif;
+	font-size: 20px;
+	font-weight: 600;
+	color: #333333;
 }
 
-/* Группа звёзд */
 .stars-group {
-  display: flex;
-  gap: 4px; /* Небольшой отступ между символами */
+	display: flex;
+	gap: 4px;
 }
 
-/* Стиль обычной (пустой/тусклой) звёздочки */
 .star {
-  font-size: 26px; /* Размер звёзд */
-  color: #cbd5e1;  /* Светло-серый цвет */
-  line-height: 1;
+	font-size: 26px;
+	color: #cbd5e1;
+	line-height: 1;
 }
 
-/* Закрашенная активная звёздочка */
 .star.filled {
-  color: #222222; /* Чёрный цвет для активных звёзд, как на макете */
+	color: #222222;
 }
-/* СТИЛИ ДЛЯ НИЖНЕГО МЕНЮ */
+
+/* НИЖНЕЕ МЕНЮ */
 .bottom-navigation {
-  width: 100%;
-  background-color: #ffffff; /* Белый фон панели, как на скриншоте */
-  padding: 20px 0;           /* Внутренние отступы сверху и снизу */
-  border-top: 1px solid #e2e8f0; /* Легкая аккуратная линия сверху панели */
-  margin-top: 40px;          /* Отступ сверху от блока навыков */
+	width: 100%;
+	background-color: #ffffff;
+	padding: 20px 0;
+	border-top: 1px solid #e2e8f0;
+	margin-top: 40px;
 }
 
-/* Контейнер для центрирования ссылок */
 .nav-inner-container {
-  max-width: 450px;          /* Ограничиваем ширину, чтобы меню соответствовало списку навыков */
-  margin: 0 auto;            /* Центрируем блок по центру экрана */
-  display: flex;
-  justify-content: space-between; /* Равномерно распределяем ссылки в один ряд */
-  padding: 0 15px;           /* Небольшие отступы по бокам для мобильных */
+	max-width: 450px;
+	margin: 0 auto;
+	display: flex;
+	justify-content: space-between;
+	padding: 0 15px;
 }
 
-/* Стили для ссылок меню */
 .nav-link {
-  font-family: 'Arial', sans-serif;
-  font-size: 16px;           /* Размер шрифта, как на скриншоте */
-  font-weight: 500;
-  color: #000000;            /* Черный цвет текста */
-  text-decoration: none;     /* Убираем стандартное подчеркивание ссылок */
-  transition: color 0.2s ease; /* Плавный переход цвета при наведении */
+	font-family: 'Arial', sans-serif;
+	font-size: 16px;
+	font-weight: 500;
+	color: #000000;
+	text-decoration: none;
+	transition: color 0.2s ease;
 }
 
-/* Эффект при наведении курсора */
 .nav-link:hover {
-  color: #2b7fff;            /* При наведении ссылка станет синей, в цвет градиента */
+	color: #2b7fff;
 }
 
-/* Стили для ссылки-обёртки */
-.instagram-click-link {
-  display: inline-block;
-  text-decoration: none;
-  vertical-align: middle;
+/* ИКОНКИ МЕССЕНДЖЕРОВ */
+.instagram-click-link, .telegram-click-link {
+	display: inline-block;
+	text-decoration: none;
+	vertical-align: middle;
 }
 
-/* Стили для самой картинки-иконки */
-.instagram-click-icon {
-  width: 30px;              /* Идеальный размер иконки по ширине */
-  height: 30px;             /* Идеальный размер иконки по высоте */
-  object-fit: contain;      /* Защищает картинку от искажения и растягивания */
-  transition: transform 0.2s ease, opacity 0.2s ease; /* Плавный эффект при наведении */
+.instagram-click-icon, .telegram-click-icon {
+	width: 30px;
+	height: 30px;
+	object-fit: contain;
+	transition: transform 0.2s ease, opacity 0.2s ease;
 }
 
-/* Эффект при наведении курсора */
-.instagram-click-icon:hover {
-  transform: scale(1.1);    /* Иконка слегка увеличится, показывая, что она кликабельна */
-  opacity: 0.8;             /* Станет чуть-чуть прозрачнее */
+.instagram-click-icon:hover, .telegram-click-icon:hover {
+	transform: scale(1.1);
+	opacity: 0.8;
 }
 
-
-
-
-
-/* Стили для ссылки-обёртки */
-.telegram-click-link {
-  display: inline-block;
-  text-decoration: none;
-  vertical-align: middle;
-}
-
-/* Стили для самой картинки-иконки */
-.telegram-click-icon {
-  width: 30px;              /* Идеальный размер иконки по ширине */
-  height: 30px;             /* Идеальный размер иконки по высоте */
-  object-fit: contain;      /* Защищает картинку от искажения и растягивания */
-  transition: transform 0.2s ease, opacity 0.2s ease; /* Плавный эффект при наведении */
-}
-
-/* Эффект при наведении курсора */
-.telegram-click-icon:hover {
-  transform: scale(1.1);    /* Иконка слегка увеличится, показывая, что она кликабельна */
-  opacity: 0.8;             /* Станет чуть-чуть прозрачнее */
-}
-
-
-
-
-
+/* БЛОК ОБО МНЕ */
 .about-section {
-    background-color: #ffffff; 
-    padding: 80px 20px;       
-    width: 100%;
-    display: flex;
-    justify-content: center;  
+	background-color: #ffffff; 
+	padding: 120px 20px 80px 20px; /* Отступ сверху увеличен из-за фиксированного меню */
+	width: 100%;
+	display: flex;
+	justify-content: center;  
 }
 
 .about-container {
-    max-width: 750px;
-    width: 100%;
-    text-align: center;       
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+	max-width: 750px;
+	width: 100%;
+	text-align: center;       
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
 .about-title {
-    font-size: 64px;
-    font-weight: 900;
-    font-style: italic;
-    color: #000000; /* Заголовок остается глубоким черным */
-    margin-bottom: 40px;
-    letter-spacing: -1px;
+	font-size: 64px;
+	font-weight: 900;
+	font-style: italic;
+	color: #000000;
+	margin-bottom: 40px;
+	letter-spacing: -1px;
 }
 
 .about-title span {
-    color: #0055ff; 
+	color: #0055ff; 
 }
 
 .about-text {
-    font-size: 24px;
-    line-height: 1.5;
-    color: #7f7f7f; /* Серый цвет для всего текста ("Hi, I'm..." и далее) */
-    margin-bottom: 35px;
-    font-weight: 400;
-    margin-left: auto;
-    margin-right: auto;
+	font-size: 24px;
+	line-height: 1.5;
+	color: #7f7f7f;
+	margin-bottom: 35px;
+	font-weight: 400;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 .about-text:last-child {
-    margin-bottom: 0;
+	margin-bottom: 0;
 }
 
-
-
-
-
-
-
+/* СОВРЕМЕННЫЙ БЛОК НАВЫКОВ С КАРТОЧКАМИ */
 .skills-section {
-    background-color: #f4f8ff; /* Очень легкий голубоватый фон секции */
-    padding: 60px 20px;
-    width: 100%;
-    display: flex;
-    justify-content: center;
+	background-color: #f4f8ff;
+	padding: 120px 20px 60px 20px;
+	width: 100%;
+	display: flex;
+	justify-content: center;
 }
 
 .skills-container {
-    max-width: 480px; /* Ограничиваем общую ширину для эффекта мобильного приложения */
-    width: 100%;
-    text-align: center;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+	max-width: 480px;
+	width: 100%;
+	text-align: center;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
 .skills-title {
-    font-size: 48px;
-    font-weight: 900;
-    font-style: italic;
-    color: #000000;
-    margin-bottom: 10px;
+	font-size: 48px;
+	font-weight: 900;
+	font-style: italic;
+	color: #000000;
+	margin-bottom: 10px;
 }
 
 .skills-subtitle {
-    font-size: 18px;
-    color: #7f7f7f;
-    margin-bottom: 40px;
+	font-size: 18px;
+	color: #7f7f7f;
+	margin-bottom: 40px;
 }
 
-/* Сетка для карточек */
 .skills-cards {
-    display: flex;
-    flex-direction: column;
-    gap: 25px; /* Расстояние между карточками */
+	display: flex;
+	flex-direction: column;
+	gap: 25px;
 }
 
-/* Сама карточка */
 .skill-card {
-    background-color: #f4f8ff;
-    border-radius: 24px;
-    padding: 25px 30px;
-    box-shadow: 0 10px 30px rgba(0, 85, 255, 0.05); /* Легкая размытая тень */
-    position: relative;
-    overflow: hidden;
-    text-align: left;
+	background-color: #ffffff; /* Исправлено на белый, чтобы карточки выделялись */
+	border-radius: 24px;
+	padding: 25px 30px;
+	box-shadow: 0 10px 30px rgba(0, 85, 255, 0.05);
+	position: relative;
+	overflow: hidden;
+	text-align: left;
 }
 
-/* Синяя полоска в самом низу карточки */
 .skill-card::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 10%;
-    width: 80%;
-    height: 4px;
-    background: linear-gradient(90deg, #0055ff, #80b3ff);
-    border-radius: 2px 2px 0 0;
+	content: '';
+	position: absolute;
+	bottom: 0;
+	left: 10%;
+	width: 80%;
+	height: 4px;
+	background: linear-gradient(90deg, #0055ff, #80b3ff);
+	border-radius: 2px 2px 0 0;
 }
 
-/* Верхняя часть карточки (лого + имя) */
 .skill-header {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    margin-bottom: 25px;
+	display: flex;
+	align-items: center;
+	gap: 20px;
+	margin-bottom: 25px;
 }
 
 .skill-icon {
-    width: 55px;
-    height: 55px;
-    object-fit: contain;
+	width: 55px;
+	height: 55px;
+	object-fit: contain;
+}
+
+.skill-name, .skill-name-single {
+	font-size: 24px;
+	font-weight: 900;
+	font-style: italic;
+	color: #000000;
 }
 
 .skill-name {
-    font-size: 24px;
-    font-weight: 900;
-    font-style: italic;
-    line-height: 1.1;
-    color: #000000;
+	line-height: 1.1;
 }
 
-/* Для Figma (название в одну строку) */
-.skill-name-single {
-    font-size: 24px;
-    font-weight: 900;
-    font-style: italic;
-    color: #000000;
-}
-
-/* Нижняя часть карточки (тег + звезды) */
 .skill-footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 }
 
-/* Синяя кнопка-тег "Perfectly" */
 .skill-tag {
-    background-color: #3b82f6;
-    color: #ffffff;
-    padding: 6px 20px;
-    border-radius: 15px;
-    font-size: 14px;
-    font-weight: bold;
+	background-color: #3b82f6;
+	color: #ffffff;
+	padding: 6px 20px;
+	border-radius: 15px;
+	font-size: 14px;
+	font-weight: bold;
 }
 
-/* Блок со звездами */
 .stars {
-    display: flex;
-    gap: 4px;
+	display: flex;
+	gap: 4px;
 }
 
-.star {
-    font-size: 22px;
-    color: #d1e2ff; /* Цвет пустых звезд */
+.stars .star {
+	font-size: 22px;
+	color: #d1e2ff;
 }
 
-.star.filled {
-    color: #3b82f6; /* Синий цвет для заполненных звезд */
+.stars .star.filled {
+	color: #3b82f6;
 }
+
 body.bg{
 	background-color:#f4f8ff;
 }
 
-
-
-
+/* БЛОК ПОРТФОЛИО */
 .portfolio-section {
-    background-color: #ffffff; /* Чистый белый фон секции */
-    padding: 60px 20px;
-    width: 100%;
-    display: flex;
-    justify-content: center;
+	background-color: #ffffff;
+	padding: 120px 20px 60px 20px;
+	width: 100%;
+	display: flex;
+	justify-content: center;
 }
 
 .portfolio-container {
-    max-width: 480px; /* Ширина под мобильный формат макета */
-    width: 100%;
-    text-align: center;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+	max-width: 480px;
+	width: 100%;
+	text-align: center;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
-/* Крупный жирный заголовок курсивом */
 .portfolio-title {
-    font-size: 54px;
-    font-weight: 900;
-    font-style: italic;
-    color: #0d1b2a; /* Очень темный сине-черный оттенок */
-    margin-bottom: 50px;
-    letter-spacing: -1px;
+	font-size: 54px;
+	font-weight: 900;
+	font-style: italic;
+	color: #0d1b2a;
+	margin-bottom: 50px;
+	letter-spacing: -1px;
 }
 
-/* Контейнер списка проектов */
 .portfolio-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 45px; /* Расстояние между проектами */
+	display: flex;
+	flex-direction: column;
+	gap: 45px;
 }
 
 .portfolio-item {
-    width: 100%;
+	width: 100%;
 }
 
-/* Общий стиль ссылки-карточки */
 .portfolio-link {
-    text-decoration: none;
-    display: inline-block;
-    width: 100%;
-    color: inherit;
+	text-decoration: none;
+	display: inline-block;
+	width: 100%;
+	color: inherit;
 }
 
-/* Обертка для картинки, чтобы задать правильное скругление */
 .portfolio-image-wrapper {
-    width: 100%;
-    border-radius: 36px; /* Сильное скругление углов как на макете */
-    overflow: hidden;
-    margin-bottom: 20px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08); /* Легкая тень для объема */
-    background-color: #e5e5e5; /* Серый фон пока картинка загружается */
-    aspect-ratio: 16 / 9; /* Удерживает правильные пропорции прямоугольника */
+	width: 100%;
+	border-radius: 36px;
+	overflow: hidden;
+	margin-bottom: 20px;
+	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+	background-color: #e5e5e5;
+	aspect-ratio: 16 / 9;
 }
 
 .portfolio-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Картинка красиво заполняет всю область */
-    display: block;
-    transition: transform 0.3s ease;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	display: block;
+	transition: transform 0.3s ease;
 }
 
-/* Небольшой эффект приближения при наведении мышки на работу */
 .portfolio-link:hover .portfolio-image {
-    transform: scale(1.03);
+	transform: scale(1.03);
 }
 
-/* Стили текстовой подписи под картинкой */
 .portfolio-item-title {
-    font-size: 20px;
-    font-weight: 500;
-    color: #000000;
-    text-decoration: underline; /* Подчеркнутый текст как на картинке */
-    text-underline-offset: 6px; /* Небольшой отступ линии от текста */
-    transition: color 0.2s ease;
+	font-size: 20px;
+	font-weight: 500;
+	color: #000000;
+	text-decoration: underline;
+	text-underline-offset: 6px;
+	transition: color 0.2s ease;
 }
 
-/* Меняем цвет подчеркнутого текста при наведении */
 .portfolio-link:hover .portfolio-item-title {
-    color: #0055ff;
+	color: #0055ff;
 }
 
-
-
-
-
+/* БЛОК КОНТАКТОВ */
 .contacts-section {
-    background-color: #ffffff; /* Белый фон */
-    padding: 80px 20px;
-    width: 100%;
-    display: flex;
-    justify-content: center;
+	background-color: #f4f8ff;
+	padding: 120px 20px 80px 20px;
+	width: 100%;
+	display: flex;
+	justify-content: center;
 }
 
 .contacts-container {
-    max-width: 450px; /* Мобильная ширина по макету */
-    width: 100%;
-    text-align: center;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+	max-width: 450px;
+	width: 100%;
+	text-align: center;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
-/* Крупный жирный заголовок курсивом */
 .contacts-title {
-    font-size: 54px;
-    font-weight: 900;
-    font-style: italic;
-    color: #000000;
-    margin-bottom: 20px;
+	font-size: 54px;
+	font-weight: 900;
+	font-style: italic;
+	color: #000000;
+	margin-bottom: 20px;
 }
 
-/* Серый текст описания */
 .contacts-subtitle {
-    font-size: 20px;
-    line-height: 1.4;
-    color: #7f7f7f;
-    margin-bottom: 40px;
-    font-weight: 400;
+	font-size: 20px;
+	line-height: 1.4;
+	color: #7f7f7f;
+	margin-bottom: 40px;
+	font-weight: 400;
 }
 
-/* Большая кнопка "Send message" с градиентом */
 .btn-send-message {
-    display: block;
-    width: 100%;
-    background: linear-gradient(135deg, #80b3ff 0%, #0055ff 100%); /* Плавный градиент */
-    color: #ffffff;
-    font-size: 20px;
-    font-weight: bold;
-    text-decoration: none;
-    padding: 18px 0;
-    border-radius: 30px; /* Полностью скругленная кнопка */
-    box-shadow: 0 8px 25px rgba(0, 85, 255, 0.2); /* Легкая синяя тень */
-    margin-bottom: 45px;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+	display: block;
+	width: 100%;
+	background: linear-gradient(135deg, #80b3ff 0%, #0055ff 100%);
+	color: #ffffff;
+	font-size: 20px;
+	font-weight: bold;
+	text-decoration: none;
+	padding: 18px 0;
+	border-radius: 30px;
+	box-shadow: 0 8px 25px rgba(0, 85, 255, 0.2);
+	margin-bottom: 45px;
+	transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-/* Эффект при наведении на кнопку */
 .btn-send-message:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 12px 30px rgba(0, 85, 255, 0.3);
+	transform: translateY(-2px);
+	box-shadow: 0 12px 30px rgba(0, 85, 255, 0.3);
 }
 
-/* Контейнер для иконок соцсетей */
 .social-links {
-    display: flex;
-    justify-content: center;
-    gap: 20px; /* Расстояние между кругами */
+	display: flex;
+	justify-content: center;
+	gap: 20px;
 }
 
-/* Круглая подложка для иконок */
 .social-icon-link {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 60px;
-    height: 60px;
-    border: 1px solid #e5efff; /* Очень тонкая нежная рамка */
-    border-radius: 50%; /* Идеальный круг */
-    text-decoration: none;
-    transition: background-color 0.2s ease, border-color 0.2s ease;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 60px;
+	height: 60px;
+	border: 1px solid #e5efff;
+	border-radius: 50%;
+	text-decoration: none;
+	transition: background-color 0.2s ease, border-color 0.2s ease;
 }
 
-/* Размер иконок внутри круга */
 .social-icon-link img {
-    width: 26px;
-    height: 26px;
-    object-fit: contain;
+	width: 26px;
+	height: 26px;
+	object-fit: contain;
 }
 
-/* Эффект при наведении на круглую иконку */
 .social-icon-link:hover {
-    background-color: #f0f5ff; /* Легкий синий фон при наведении */
-    border-color: #0055ff;      /* Рамка становится ярче */
+	background-color: #f0f5ff;
+	border-color: #0055ff;
 }
 
+/* NIEZALEŻNA GALERIA (4 КАРТИНКИ) */
+.independent-gallery-wrapper {
+	background-color: #ffffff !important;
+	padding: 120px 20px 80px 20px !important;
+	width: 100% !important;
+	box-sizing: border-box !important;
+	display: flex !important;
+	justify-content: center !important;
+}
 
+.independent-gallery-container {
+	max-width: 1200px !important;
+	width: 100% !important;
+	box-sizing: border-box !important;
+}
 
+.independent-gallery-title {
+	font-family: Arial, sans-serif !important;
+	font-size: 36px !important;
+	font-weight: 900 !important;
+	font-style: italic !important;
+	color: #000000 !important;
+	text-align: center !important;
+	margin: 0 0 40px 0 !important;
+}
 
+.independent-gallery-grid {
+	display: grid !important;
+	grid-template-columns: repeat(4, 1fr) !important;
+	gap: 20px !important;
+	width: 100% !important;
+	box-sizing: border-box !important;
+}
 
+.independent-gallery-item {
+	position: relative !important;
+	border-radius: 20px !important;
+	overflow: hidden !important;
+	aspect-ratio: 1 / 1 !important;
+	box-shadow: 0 4px 15px rgba(0,0,0,0.06) !important;
+	cursor: pointer !important;
+	box-sizing: border-box !important;
+}
 
+.independent-gallery-img {
+	width: 100% !important;
+	height: 100% !important;
+	object-fit: cover !important;
+	display: block !important;
+	transition: transform 0.4s ease !important;
+}
 
+.independent-gallery-overlay {
+	position: absolute !important;
+	top: 0 !important;
+	left: 0 !important;
+	width: 100% !important;
+	height: 100% !important;
+	background-color: rgba(0, 85, 255, 0.75) !important;
+	display: flex !important;
+	align-items: center !important;
+	justify-content: center !important;
+	opacity: 0 !important;
+	transition: opacity 0.3s ease !important;
+}
 
+.independent-gallery-btn {
+	color: #ffffff !important;
+	font-family: Arial, sans-serif !important;
+	font-weight: bold !important;
+	font-size: 16px !important;
+	border: 2px solid #ffffff !important;
+	padding: 8px 20px !important;
+	border-radius: 20px !important;
+	text-transform: uppercase !important;
+}
+
+.independent-gallery-item:hover .independent-gallery-img {
+	transform: scale(1.08) !important;
+}
+.independent-gallery-item:hover .independent-gallery-overlay {
+	opacity: 1 !important;
+}
+
+/* ПРОЗРАЧНЫЙ ФУТЕР В САМОМ НИЗУ */
+.uc-centered-footer {
+	background: transparent !important;
+	padding: 40px 20px 30px 20px !important;
+	width: 100% !important;
+	box-sizing: border-box !important;
+	display: flex !important;
+	justify-content: center !important;
+	position: relative !important;
+	z-index: 10 !important;
+	clear: both !important;
+	margin-top: auto !important;
+}
+
+.uc-centered-container {
+	max-width: 600px !important;
+	width: 100% !important;
+	text-align: center !important;
+	box-sizing: border-box !important;
+}
+
+.uc-centered-row {
+	display: flex !important;
+	flex-direction: column !important;
+	align-items: center !important;
+	gap: 8px !important;
+}
+
+.uc-centered-label {
+	font-family: Arial, sans-serif !important;
+	font-size: 16px !important;
+	color: #7f7f7f !important;
+}
+
+.uc-centered-phone {
+	font-family: Arial, sans-serif !important;
+	font-size: 22px !important;
+	font-weight: bold !important;
+	color: #0055ff !important;
+	text-decoration: none !important;
+	transition: color 0.2s ease !important;
+}
+
+.uc-centered-phone:hover {
+	color: #80b3ff !important;
+}
+
+.uc-centered-divider {
+	border: none !important;
+	height: 1px !important;
+	background-color: #e5e5e5 !important;
+	margin: 25px auto 20px auto !important;
+	width: 80% !important;
+}
+
+.uc-centered-info-block {
+	display: flex !important;
+	flex-direction: column !important;
+	gap: 6px !important;
+	align-items: center !important;
+}
+
+.uc-centered-copy, .uc-centered-date {
+	font-family: Arial, sans-serif !important;
+	font-size: 13px !important;
+	color: #999999 !important;
+	margin: 0 !important;
+}
 
 /* ===================================================
-   ИЗОЛИРОВАННЫЙ БЛОК ГАЛЕРЕИ (ПК, ПЛАНШЕТ, СМАРТФОН)
+   ИЗОЛИРОВАННЫЙ БЛОК: MY PROJECTS (Адаптация 4 -> 2 -> 1)
 ====================================================== */
 
-/* Обертка блока (задает независимый белый фон и отступы) */
-.independent-gallery-wrapper {
+.proj-independent-section {
     background-color: #ffffff !important;
-    padding: 80px 20px !important;
+    padding: 60px 20px !important;
     width: 100% !important;
     box-sizing: border-box !important;
     display: flex !important;
-    justify-content: center !important;
+    justify-content: center !important; 
+    clear: both !important;
 }
 
-/* Контейнер, ограничивающий максимальную ширину на ПК */
-.independent-gallery-container {
-    max-width: 1200px !important;
+.proj-independent-container {
+    max-width: 1100px !important; 
     width: 100% !important;
     box-sizing: border-box !important;
 }
 
-/* Независимый заголовок */
-.independent-gallery-title {
+.proj-independent-title {
     font-family: Arial, sans-serif !important;
-    font-size: 36px !important;
+    font-size: 42px !important;
     font-weight: 900 !important;
     font-style: italic !important;
     color: #000000 !important;
@@ -634,90 +735,242 @@ body.bg{
     margin: 0 0 40px 0 !important;
 }
 
-/* Сетка: по умолчанию режим для ПК (4 колонки в ряд) */
-.independent-gallery-grid {
-    display: grid !important;
-    grid-template-columns: repeat(4, 1fr) !important;
-    gap: 20px !important;
+/* 💻 РЕЖИМ ДЛЯ ПК: Карточки выстраиваются в ряд на Flexbox */
+.proj-independent-grid {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: center !important; 
+    flex-wrap: wrap !important; 
+    gap: 25px !important; 
     width: 100% !important;
     box-sizing: border-box !important;
 }
 
-/* Элемент сетки */
-.independent-gallery-item {
-    position: relative !important;
-    border-radius: 20px !important;
+.proj-independent-item {
+    background-color: #ffffff !important;
+    border-radius: 28px !important; 
     overflow: hidden !important;
-    aspect-ratio: 1 / 1 !important; /* Квадратные карточки */
-    box-shadow: 0 4px 15px rgba(0,0,0,0.06) !important;
-    cursor: pointer !important;
-    box-sizing: border-box !important;
-}
-
-/* Картинка внутри карточки */
-.independent-gallery-img {
-    width: 100% !important;
-    height: 100% !important;
-    object-fit: cover !important;
-    display: block !important;
-    transition: transform 0.4s ease !important;
-}
-
-/* Синий фон-эффект при наведении */
-.independent-gallery-overlay {
-    position: absolute !important;
-    top: 0 !important;
-    left: 0 !important;
-    width: 100% !important;
-    height: 100% !important;
-    background-color: rgba(0, 85, 255, 0.75) !important;
+    width: 22% !important; 
+    min-width: 180px !important; 
+    aspect-ratio: 1 / 1 !important; 
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04) !important; 
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
-    opacity: 0 !important;
-    transition: opacity 0.3s ease !important;
+    box-sizing: border-box !important;
+    transition: transform 0.3s ease !important;
 }
 
-/* Кнопка внутри эффекта наведения */
-.independent-gallery-btn {
-    color: #ffffff !important;
-    font-family: Arial, sans-serif !important;
-    font-weight: bold !important;
-    font-size: 16px !important;
-    border: 2px solid #ffffff !important;
-    padding: 8px 20px !important;
-    border-radius: 20px !important;
-    text-transform: uppercase !important;
+.proj-independent-item:hover {
+    transform: translateY(-8px) !important; 
 }
 
-/* Работа анимации ховера */
-.independent-gallery-item:hover .independent-gallery-img {
-    transform: scale(1.08) !important;
+.proj-independent-img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important; 
+    display: block !important;
 }
-.independent-gallery-item:hover .independent-gallery-overlay {
-    opacity: 1 !important;
-}
+
 
 /* ===================================================
-   АДАПТИВНЫЕ МЕДИА-ЗАПРОСЫ ДЛЯ ЭТОГО БЛОКА
+   ПОЛНАЯ АДАПТАЦИЯ ДЛЯ МОБИЛЬНЫХ УСТРОЙСТВ (ИСПРАВЛЕННАЯ)
 ====================================================== */
 
-/* 📟 ДЛЯ ПЛАНШЕТОВ (Экран меньше 992px) — Сетка превращается в 2х2 */
-@media (max-width: 992px) {
-    .independent-gallery-grid {
-        grid-template-columns: repeat(2, 1fr) !important;
-        gap: 15px !important;
+/* 📱 ДЛЯ СМАРТФОНОВ И ПЛАНШЕТОВ (Экран меньше 768px) */
+@media screen and (max-width: 768px) {
+	
+	/* 1. Адаптируем главную плашку меню */
+	section {
+		position: static !important;
+		flex-direction: row !important; 
+		justify-content: space-between !important; 
+		align-items: center !important;
+		flex-wrap: wrap !important; 
+		gap: 12px !important;
+		height: auto !important;
+		width: 100% !important;
+		max-width: 100% !important;
+		padding: 15px 20px !important; 
+		margin: 0 !important;
+	}
+	
+	section nav ul {
+		display: flex !important;
+		justify-content: flex-end !important; 
+		align-items: center !important;
+		flex-wrap: wrap !important;
+		gap: 8px !important;
+		width: auto !important; 
+		float: none !important;
+		padding: 0 !important;
+	}
+	
+	section nav ul li {
+		float: none !important; 
+		position: relative !important;
+	}
+	
+	section nav ul li a {
+		padding: 6px 10px !important;
+		font-size: 15px !important;
+		font-weight: 600 !important;
+	}
+	
+	/* ❌ СКРЫВАЕМ ВЫПАДАЮЩИЕ СПИСКИ НА СМАРТФОНАХ */
+	nav ul li ul,
+	nav ul li ul li ul,
+	nav ul li:hover > ul {
+		display: none !important; 
+		position: static !important;
+		visibility: hidden !important;
+		opacity: 0 !important;
+		height: 0 !important;
+		padding: 0 !important;
+		border: none !important;
+	}
+
+	/* 2. БАННЕР HERO */
+	div.hero {
+		height: auto !important; 
+		min-height: 100vh !important;
+		padding: 0 0 40px 0 !important; 
+		justify-content: flex-start !important;
+		align-items: center !important; 
+		text-align: center !important;
+		background-position: center bottom 20px !important; 
+		background-size: 85% auto !important; 
+	}
+
+	.title {
+		font-size: 36px !important; 
+		margin-top: 30px !important;
+		margin-bottom: 8px !important;
+	}
+
+	.sub {
+		font-size: 16px !important;
+		margin-bottom: 320px !important; 
+	}
+	
+	/* 📟 РЕЖИМ ДЛЯ ПЛАНШЕТОВ ДЛЯ БЛОКА "MY PROJECTS" */
+    .proj-independent-item {
+        width: 45% !important;
+        max-width: 240px !important;
     }
 }
 
-/* 📱 ДЛЯ СМАРТФОНОВ (Экран меньше 576px) — Картинки выстраиваются в 1 колонку */
-@media (max-width: 576px) {
-    .independent-gallery-grid {
-        grid-template-columns: repeat(1, 1fr) !important;
-        gap: 20px !important;
+/* 📱 ДЛЯ СМАРТФОНОВ (Экран меньше 600px) — Сетка строго 1х1 */
+@media screen and (max-width: 600px) {
+    .proj-independent-grid {
+        flex-direction: column !important; /* Вытягиваем карточки в один вертикальный столб */
+        align-items: center !important; 
     }
-    
-    .independent-gallery-item {
-        aspect-ratio: 4 / 3 !important; /* На телефонах прямоугольный вид удобнее */
+
+    .proj-independent-item {
+        width: 100% !important;
+        max-width: 260px !important; /* Идеальный размер квадрата на мобилке */
     }
 }
+
+/* 📱 ДЛЯ СОВСЕМ МАЛЕНЬКИХ ЭКРАНОВ (Экран меньше 420px) */
+@media screen and (max-width: 420px) {
+	.title {
+		font-size: 30px !important;
+	}
+	
+	section nav ul li a {
+		font-size: 13px !important; 
+		padding: 4px 6px !important;
+	}
+	
+	.sub {
+		margin-bottom: 270px !important;
+	}
+}
+
+
+/* Базовые стили для картинок, чтобы они не искажались */
+.independent-gallery-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Картинка заполняет область без растягивания */
+    display: block;
+}
+
+/* Контейнер для картинок (ссылка) */
+.independent-gallery-item {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 3; /* Соотношение сторон картинок (можно менять) */
+    overflow: hidden;
+    position: relative;
+}
+
+/* ==========================================
+   АДАПТИВНАЯ СЕТКА (Переключение колонок)
+   ========================================== */
+
+/* 1. СМАРТФОН: 1 картинка во всю ширину */
+.independent-gallery-grid {
+    display: grid !important; /* Гарантируем включение сетки */
+    grid-template-columns: 1fr !important; /* Строго 1 колонка */
+    gap: 16px; /* Расстояние между картинками */
+    padding: 16px;
+}
+
+/* 2. ПЛАНШЕТ: 2 картинки в ряд */
+@media (min-width: 600px) {
+    .independent-gallery-grid {
+        grid-template-columns: repeat(2, 1fr) !important; /* Строго 2 колонки */
+        gap: 20px;
+    }
+}
+
+/* 3. КОМПЬЮТЕР (ПК): 4 картинки в ряд */
+@media (min-width: 1024px) {
+    .independent-gallery-grid {
+        grid-template-columns: repeat(4, 1fr) !important; /* Строго 4 колонки */
+        gap: 24px;
+        max-width: 1200px; /* Ограничение ширины сетки на ПК */
+        margin: 0 auto; /* Центрирование на экране */
+    }
+}
+
+/* ==========================================
+   ЭФФЕКТЫ ПРИ НАВЕДЕНИИ (OVERLAY)
+   ========================================== */
+.independent-gallery-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.independent-gallery-item:hover .independent-gallery-overlay {
+    opacity: 1;
+}
+
+.independent-gallery-btn {
+    color: #fff;
+    border: 2px solid #fff;
+    padding: 8px 24px;
+    border-radius: 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-family: sans-serif;
+    font-size: 14px;
+}
+
+
+
+
+
+
