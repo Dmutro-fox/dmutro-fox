@@ -1,0 +1,38 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Головна</title>
+<link rel='stylesheet' href='style.css'>
+</head>
+<body>
+<section>
+		<a href='#' class='logo'>OK</a>
+		<nav>
+			<ul>
+				<li><a href='index.html'>Головна</a></li>
+				<li><a href='Prome.html'>Про мене</a>
+					<ul>
+						<li><a href='Skils.html'>Навички</a>
+						<ul>
+							<li><a href='Word.html'>Microsof Word</a></li>
+					<li><a href='Figma.html'>Figma</a></li>
+					<li><a href='PDF.html'>Microsof PDF</a></li>
+						</ul>
+						</li>
+					</ul>
+					</li>
+				<li><a href='Portfel.html'>Портфоліо</a>
+				<ul>
+					<li><a href='SM.html'>Sea Smoke</a></li>
+					<li><a href='MAKE.html'>Make</a></li>
+					<li><a href='Tip.html'>TipeMe</a></li>
+				</ul>
+				</li>
+				<li><a href='Contact.html'>Контакти</a></li>
+			</ul>
+		</nav>
+	</section>
+	
+</body>
+</html>
